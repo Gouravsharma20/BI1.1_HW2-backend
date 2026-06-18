@@ -11,7 +11,7 @@ const Hotel = require("./model/HotelModel.js")
 const { error } = require("console")
 
 
-const jsonData = fs.readFileSync("./data/hotelData.json","utf-8")
+// const jsonData = fs.readFileSync("./data/hotelData.json","utf-8")
 
 const cors = require("cors");
 const corsOptions = {
@@ -102,10 +102,10 @@ app.get("/hotelname/:name",async (req,res)=>{
 })
 
 
-const hotelData = JSON.parse(jsonData)
+// const hotelData = JSON.parse(jsonData)
 
 
-const PORT = 7736
+const PORT = 7737
 
 app.listen(PORT,()=>{
     console.log(`App is running on Port ${PORT}`)
