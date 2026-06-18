@@ -3,10 +3,9 @@ const {initializeDatabase} = require("./db/db.connection.js")
 const express = require("express")
 
 const app = express()
-
 app.use(express.json())
 
-const fs = require("fs")
+// const fs = require("fs")
 
 const Hotel = require("./model/HotelModel.js")
 const { error } = require("console")
