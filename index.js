@@ -44,6 +44,9 @@ async function createHotels(newHotel){
 app.post("/hotels",async(req,res)=>{
     try {
         const addedHotel = await createHotels(req.body)
+        if(!addedHotel) {
+            return res.status(404).json({error:"newly added hotel not found"})
+        }
         return res.status(201).json({message:"new Hotel Added successfully",hotelData:addedHotel})
     } catch(err){
         return res.status(500).json({error:"an erro occured while adding hotels"})
