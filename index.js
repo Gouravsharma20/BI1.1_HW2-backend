@@ -104,11 +104,35 @@ app.get("/hotelname/:name",async (req,res)=>{
     }
 })
 
+async function deleteHotel(hotelId) {
+    await initializeDatabase()
+    const foundHotel = await Hotel.findByIdAndDelete(hotelId)
+    return foundHotel
+}
+
+app.delete("/deleteHotel/:id",async(req,res)=>{
+    try {
+        const id = req.params.id
+        console.log("Deleting ID:", id);
+        const deletedHotel = await deleteHotel(id)
+        console.log("Added ID:", id);
+        if (!deletedHotel) {
+            return res.status(404).json({error:"unable to find hotel with id"})
+        } else {
+            return res.status(200).json({message:"Hotel deleted successfully",HotelInfo:deletedHotel})
+        }
+
+    } catch(err) {
+        return res.status(500).json({error:"hotel deleted successfully",errorDetails:err.message})
+        throw err
+    }
+})
+
 
 // const hotelData = JSON.parse(jsonData)
 
 
-const PORT = 7737
+const PORT = 7634
 
 app.listen(PORT,()=>{
     console.log(`App is running on Port ${PORT}`)
